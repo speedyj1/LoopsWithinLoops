@@ -79,19 +79,32 @@ def draw_L(window, circle, r, c):
       :type c: int
     and m and n are small, positive integers.
     """
-    original_x = circle.center.x
-    original_y = circle.center.y
+    x1 = circle.center.x
+    y1 = circle.center.y
     radius = circle.radius
-    x = original_x
-    y = original_y
+    x = x1
+    y = y1
     for j in range(r):
-        new_circle = rg.Circle(x,y,radius)
-        new_circle.attach_to(window)
-        window.render(.1)
-        x = x + 2* radius
-    for k in range()
+        for k in range(3):
+            new_circle = rg.Circle(rg.Point(x, y), radius)
+            new_circle.fill_color = circle.fill_color
+            new_circle.attach_to(window)
+            window.render()
+            x = x + (2 * radius)
+        y = y + 2 * radius
+        x = x1
+    for j in range(3):
+        for k in range(c + 3):
+            new_circle1 = rg.Circle(rg.Point(x, y), radius)
+            new_circle1.fill_color = circle.fill_color
+            new_circle1.attach_to(window)
+            window.render()
+            x = x + (2 * radius)
+        y = y + 2 * radius
+        x = x1
+
     # ------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.
+    # DONE: 2. Implement and test this function.
     #     The testing code is already written for you (above).
     # ------------------------------------------------------------------
 
@@ -131,9 +144,27 @@ def draw_wall_on_right(rectangle, n, window):
       :type window: rg.RoseWindow
     and n is a small, positive integer.
     """
-
+    height = rectangle.get_height()
+    width = rectangle.get_width()
+    upper_right_original = rectangle.get_upper_right_corner()
+    lower_left_original = rectangle.get_lower_left_corner()
+    x1 = upper_right_original.x
+    y1 = upper_right_original.y
+    x2 = lower_left_original.x
+    y2 = lower_left_original.y
+    for k in range(n):
+        for j in range(k + 1):
+            new_rect = rg.Rectangle(rg.Point(x1, y1), rg.Point(x2, y2))
+            new_rect.attach_to(window)
+            window.render()
+            x1 = x1 - width
+            x2 = x2 - width
+        y1 = y1 + height
+        y2 = y2 + height
+        x1 = upper_right_original.x
+        x2 = lower_left_original.x
     # ------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.
+    # DONE: 3. Implement and test this function.
     #     The testing code is already written for you (above).
     # ------------------------------------------------------------------
 
